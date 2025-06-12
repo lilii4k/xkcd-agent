@@ -5,20 +5,19 @@
     <parent>
         <groupId>com.embabel.build</groupId>
         <artifactId>embabel-build-parent</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>0.1.0-SNAPSHOT</version>
     </parent>
     <groupId>com.embabel.template</groupId>
     <artifactId>ProjectName</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>0.1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>My first agent</name>
     <description>Generated agent project</description>
 
     <properties>
-        <embabel-common.version>1.0.0-SNAPSHOT</embabel-common.version>
-        <embabel-agent-api.version>1.0.0-SNAPSHOT</embabel-agent-api.version>
-        <examples-common.version>1.0.0-SNAPSHOT</examples-common.version>
-
+        <embabel-common.version>0.1.0-SNAPSHOT</embabel-common.version>
+        <embabel-agent-api.version>0.1.0-SNAPSHOT</embabel-agent-api.version>
+        <examples-common.version>0.1.0-SNAPSHOT</examples-common.version>
     </properties>
 
     <!-- Embabel BOM(s) -->
@@ -119,7 +118,7 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
             </plugin>
-            
+
         </plugins>
     </build>
 
