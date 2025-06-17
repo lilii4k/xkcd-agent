@@ -23,7 +23,7 @@ import com.embabel.agent.api.common.OperationContext
 import com.embabel.agent.api.common.create
 import com.embabel.agent.domain.io.UserInput
 import com.embabel.agent.domain.library.HasContent
-import com.embabel.agent.prompt.Persona
+import com.embabel.agent.prompt.persona.Persona
 import com.embabel.common.ai.model.LlmOptions
 import com.embabel.common.ai.model.ModelSelectionCriteria.Companion.Auto
 import com.embabel.common.core.types.Timestamped
