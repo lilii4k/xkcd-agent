@@ -15,12 +15,13 @@
  */
 package com.embabel.template
 
+import com.embabel.agent.config.annotation.EnableAgentShell
+import com.embabel.agent.config.annotation.LoggingTheme
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
-import com.embabel.agent.config.annotation.EnableAgentShell
 
 @SpringBootApplication
-@EnableAgentShell
+@EnableAgentShell(loggingTheme = LoggingTheme.STAR_WARS)
 class ProjectNameApplication
 
 fun main(args: Array<String>) {

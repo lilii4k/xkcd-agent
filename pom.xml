@@ -36,6 +36,14 @@
             <version>${embabel-agent.version}</version>
         </dependency>
 
+        <!-- Unit and Integration Testing -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+
     </dependencies>
 
     <build>
@@ -55,17 +63,17 @@
                     </args>
                     <compilerPlugins>
                         <plugin>spring</plugin>
-                        </compilerPlugins>
-                 </configuration>
-                 <dependencies>
-                     <dependency>
-                         <groupId>org.jetbrains.kotlin</groupId>
-                         <artifactId>kotlin-maven-allopen</artifactId>
-                         <version>${kotlin.version}</version>
-                     </dependency>
-                 </dependencies>
-             </plugin>
-         </plugins>
+                    </compilerPlugins>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.jetbrains.kotlin</groupId>
+                        <artifactId>kotlin-maven-allopen</artifactId>
+                        <version>${kotlin.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
     </build>
 
     <repositories>
