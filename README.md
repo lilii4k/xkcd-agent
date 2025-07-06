@@ -43,4 +43,9 @@ When the Embabel shell comes up, use the story agent like this:
 x "Tell me a story about...[your topic]"
 ```
 
+## Contributors
+
+[![Embabel contributors](https://contrib.rocks/image?repo=embabel/kotlin-agent-template)](https://github.com/embabel/kotlin-agent-template/graphs/contributors)
+
+
 
