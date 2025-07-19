@@ -82,8 +82,8 @@ data class ReviewedStory(
 )
 @Profile("!test")
 class WriteAndReviewAgent(
-    @Value("\${storyWordCount:100}") private val storyWordCount: Int,
-    @Value("\${reviewWordCount:100}") private val reviewWordCount: Int,
+    @param:Value("\${storyWordCount:100}") private val storyWordCount: Int,
+    @param:Value("\${reviewWordCount:100}") private val reviewWordCount: Int,
 ) {
 
     @Action
@@ -104,7 +104,7 @@ class WriteAndReviewAgent(
         """.trimIndent()
             )
 
-    @AchievesGoal("The user has been greeted")
+    @AchievesGoal(description = "The user has been greeted")
     @Action
     fun reviewStory(userInput: UserInput, story: Story, context: OperationContext): ReviewedStory {
         val review = context.promptRunner(
