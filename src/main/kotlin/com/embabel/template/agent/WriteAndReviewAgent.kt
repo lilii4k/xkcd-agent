@@ -15,10 +15,7 @@
  */
 package com.embabel.template.agent
 
-import com.embabel.agent.api.annotation.AchievesGoal
-import com.embabel.agent.api.annotation.Action
-import com.embabel.agent.api.annotation.Agent
-import com.embabel.agent.api.annotation.using
+import com.embabel.agent.api.annotation.*
 import com.embabel.agent.api.common.OperationContext
 import com.embabel.agent.api.common.create
 import com.embabel.agent.domain.io.UserInput
@@ -104,7 +101,10 @@ class WriteAndReviewAgent(
         """.trimIndent()
             )
 
-    @AchievesGoal(description = "The user has been greeted")
+    @AchievesGoal(
+        description = "The user has been greeted",
+        export = Export(remote = true, name = "writeAndReviewStory")
+    )
     @Action
     fun reviewStory(userInput: UserInput, story: Story, context: OperationContext): ReviewedStory {
         val review = context.promptRunner(
