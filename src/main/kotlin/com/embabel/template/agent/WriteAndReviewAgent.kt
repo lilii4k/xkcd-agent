@@ -15,14 +15,17 @@
  */
 package com.embabel.template.agent
 
-import com.embabel.agent.api.annotation.*
+import com.embabel.agent.api.annotation.AchievesGoal
+import com.embabel.agent.api.annotation.Action
+import com.embabel.agent.api.annotation.Agent
+import com.embabel.agent.api.annotation.Export
 import com.embabel.agent.api.common.OperationContext
 import com.embabel.agent.api.common.create
 import com.embabel.agent.domain.io.UserInput
 import com.embabel.agent.domain.library.HasContent
 import com.embabel.agent.prompt.persona.Persona
+import com.embabel.agent.prompt.persona.RoleGoalBackstory
 import com.embabel.common.ai.model.LlmOptions
-import com.embabel.common.ai.model.ModelSelectionCriteria.Companion.Auto
 import com.embabel.common.core.types.Timestamped
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Profile
@@ -30,11 +33,10 @@ import java.time.Instant
 import java.time.ZoneId
 import java.time.format.DateTimeFormatter
 
-val StoryTeller = Persona(
-    name = "Roald Dahl",
-    persona = "A creative storyteller who loves to weave imaginative tales that are a bit unconventional",
-    voice = "Quirky",
-    objective = "Create memorable stories that captivate the reader's imagination.",
+val StoryTeller = RoleGoalBackstory(
+    role = "A creative storyteller who loves to weave imaginative tales that are a bit unconventional",
+    goal = "Create memorable stories that captivate the reader's imagination.",
+    backstory = "You have been crafting stories for as long as you can remember. Your tales often feature unexpected twists and unique characters that leave a lasting impression on your audience.",
 )
 
 val Reviewer = Persona(
@@ -85,9 +87,11 @@ class WriteAndReviewAgent(
 
     @Action
     fun craftStory(userInput: UserInput, context: OperationContext): Story =
-        context.promptRunner().withLlm(LlmOptions(criteria = Auto, temperature = 0.9))
+        context.ai()
+            .withLlm(LlmOptions.withAutoLlm().withTemperature(0.7))
             .withPromptContributor(StoryTeller)
-            .create<Story>("""
+            .create(
+                """
             Craft a short story in $storyWordCount words or less.
             The story should be engaging and imaginative.
             Use the user's input as inspiration if possible.
@@ -95,7 +99,8 @@ class WriteAndReviewAgent(
 
             # User input
             ${userInput.content}
-        """.trimIndent())
+        """.trimIndent()
+            )
 
     @AchievesGoal(
         description = "The user has been greeted",
@@ -103,9 +108,9 @@ class WriteAndReviewAgent(
     )
     @Action
     fun reviewStory(userInput: UserInput, story: Story, context: OperationContext): ReviewedStory {
-        val review = context.promptRunner(
-            LlmOptions(criteria = Auto)
-        ).withPromptContributor(Reviewer)
+        val review = context.ai()
+            .withAutoLlm()
+            .withPromptContributor(Reviewer)
             .generateText(
                 """
             You will be given a short story to review.
