@@ -4,7 +4,6 @@ import com.embabel.agent.domain.io.UserInput
 import com.embabel.agent.testing.unit.FakeOperationContext
 import com.embabel.agent.testing.unit.FakePromptRunner
 import com.embabel.agent.testing.unit.LlmInvocation
-import com.embabel.agent.testing.unit.UnitTestUtils.captureLlmCall
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import java.time.Instant
@@ -43,8 +42,8 @@ internal class WriteAndReviewAgentTest {
         // Verify the temperature setting for creative output
         val actual = promptRunner.llmInvocations.first().interaction.llm.temperature
         Assertions.assertEquals(
-            0.9, actual, 0.01,
-            "Expected temperature to be 0.9: Higher for more creative output"
+            0.7, actual!!, 0.01,
+            "Expected temperature to be 0.7: Higher for more creative output"
         )
     }
 
