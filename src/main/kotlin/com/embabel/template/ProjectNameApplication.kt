@@ -16,12 +16,13 @@
 package com.embabel.template
 
 import com.embabel.agent.config.annotation.EnableAgents
+import com.embabel.agent.config.annotation.LocalModels
 import com.embabel.agent.config.annotation.LoggingThemes
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-@EnableAgents(loggingTheme = LoggingThemes.STAR_WARS)
+@EnableAgents(localModels = [LocalModels.OLLAMA])
 class ProjectNameApplication
 
 fun main(args: Array<String>) {
